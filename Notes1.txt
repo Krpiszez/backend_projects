@@ -2,3 +2,4 @@ This is my first GitHub Class
 This is my second commit
 Update was handled successfully
 New Local Code
+New Remote Code
