@@ -10,6 +10,7 @@ public class Map06 {
         System.out.println("anagram() = " + anagram());
         System.out.println("isAnagram() = " + isAnagram("SASA", "SAAA"));
 
+
     }
 
     public static boolean anagram(){
