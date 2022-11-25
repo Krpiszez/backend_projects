@@ -2,7 +2,7 @@ package first_git_package;
 
 import java.util.Scanner;
 
-public class StringClass {
+public class StringClass01 {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         System.out.println("Enter the text");
