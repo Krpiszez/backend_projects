@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class StringClass01 {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        System.out.println("Enter the text");
+        System.out.println("Enter the text for");
         String text = in.nextLine();
         System.out.println("Enter the character");
         char letter = in.next().charAt(0);
