@@ -11,11 +11,11 @@ public class AssignmentJava {
   */
     public static void main(String[] args) {
 
-        updateEl(removeEl());
+        updateEl(removeEl(addEl()));
 
     }
 
-    public static List<Integer> removeEl(){
+    public static List<Integer> addEl(){
         Scanner in = new Scanner(System.in);
         List<Integer> list = new ArrayList<>();
         System.out.println("Enter your list elements, press any letter to quit insetion!");
@@ -23,10 +23,34 @@ public class AssignmentJava {
             list.add(in.nextInt());
         }
         System.out.println("Your list is: " + list);
-
+        return list;
+    }
+    public static List<Integer> removeEl(List<Integer> list){
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter num to be removed");
-        ListIterator<Integer> itr = list.listIterator();
+        while(scan.hasNextInt()){
+            int a = scan.nextInt();
+            list.remove(Integer.valueOf(a));
+        }
+        System.out.println(list);
+        return list;
+    }
+
+    public static List<Integer> updateEl(List<Integer> list){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter the numbers to be updated. First the existing one and next the new value!");
+        while (scan.hasNextInt()){
+            int a = scan.nextInt();
+            int b = scan.nextInt();
+            list.set(list.indexOf(a), b);
+        }
+        System.out.println(list);
+        return list;
+    }
+
+}
+/*
+ListIterator<Integer> itr = list.listIterator();
         while (scan.hasNextInt()) {
             while (itr.hasNext()){
                 int el = itr.next();
@@ -38,10 +62,9 @@ public class AssignmentJava {
             }
         }
         System.out.println("Your list after removal of numbers: " + list);
-        return list;
-    }
-    public static List<Integer> updateEl(List<Integer> list){
-        ListIterator<Integer> itr = list.listIterator();
+ */
+/*
+ ListIterator<Integer> itr = list.listIterator();
         Scanner in = new Scanner(System.in);
         System.out.println("Enter num to update then new value press any letter to end assertion");
         while (in.hasNextInt()){
@@ -53,7 +76,4 @@ public class AssignmentJava {
             }
         }
         System.out.println(list);
-        return list;
-    }
-
-}
+ */
