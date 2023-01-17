@@ -18,7 +18,7 @@ public class AssignmentJava {
     public static List<Integer> addEl(){
         Scanner in = new Scanner(System.in);
         List<Integer> list = new ArrayList<>();
-        System.out.println("Enter your list elements, press any letter to quit insetion!");
+        System.out.println("Enter your list elements, press any letter to quit insertion!");
         while (in.hasNextInt()){
             list.add(in.nextInt());
         }
