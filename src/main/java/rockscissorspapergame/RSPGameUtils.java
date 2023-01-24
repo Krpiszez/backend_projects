@@ -3,7 +3,7 @@ package rockscissorspapergame;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Utils {
+public class RSPGameUtils {
 
     protected static String userChoice(){
         Scanner in = new Scanner(System.in);
@@ -54,6 +54,5 @@ public class Utils {
                 System.out.println("Loser! You Have Been Defeated! ");
             }
         }while (userWinCounter<3 && javaWinCounter<3);
-
     }
 }
