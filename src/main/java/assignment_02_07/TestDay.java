@@ -1,11 +1,13 @@
 package assignment_02_07;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Tuesday extends Day{
-    private String name = "Tuesday";
+public class TestDay extends Day{
+
+    private String name = "TestDay";
     @Override
     public Map<Integer, String> getDay() {
         Scanner scan = new Scanner(System.in);
