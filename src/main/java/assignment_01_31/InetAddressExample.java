@@ -6,6 +6,7 @@ import java.net.UnknownHostException;
 public class InetAddressExample {
 
     public static void main(String[] args) {
+        int i =0;
 
         try {
             InetAddress localHost = InetAddress.getLocalHost();
