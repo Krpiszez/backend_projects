@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class ScheduleRunner {
-
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter the day you want to work on!");
@@ -18,9 +17,7 @@ public class ScheduleRunner {
         } else if (dayName.equalsIgnoreCase("wednesday")) {
             day = new Wednesday();
         }
-
         day.getDay();
-
 
     }
 
