@@ -13,6 +13,6 @@ public class AbstractFactoryDemo {
         AbstractFactory colorFactory = FactoryProducer.getFactory("color");
         Color color1 = colorFactory.getColor("Red");
         color1.fill();
-
+        
     }
 }

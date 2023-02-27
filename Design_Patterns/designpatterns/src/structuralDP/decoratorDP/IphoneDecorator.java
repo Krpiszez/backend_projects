@@ -5,7 +5,7 @@ public class IphoneDecorator implements Phone{ // Here we extend from the base c
     // to our basic class fields(attributes). Now we have those values we have set from basic class object as our base values. This class will remain
     // same, so we can use it as our new base for updated products.
 
-    protected Phone basicPhone;
+    protected Phone basicPhone; // we use interface as data type because we cant depend on a class. Interface remains same.
 
     public IphoneDecorator(Iphone basicPhone) {
         this.basicPhone = basicPhone;
