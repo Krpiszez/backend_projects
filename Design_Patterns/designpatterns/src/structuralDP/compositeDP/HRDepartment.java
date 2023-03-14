@@ -9,7 +9,7 @@ public class HRDepartment extends Department{
 
     public HRDepartment(List<Department> childDepartments) {
         this.childDepartments = childDepartments;
-    }
+    } // here the list data type is parent abstract class so we can have any child classes elements.
 
     @Override
     String getName() {
@@ -21,6 +21,7 @@ public class HRDepartment extends Department{
     @Override
     List<String> getEmployee() {
         return childDepartments.stream().flatMap(d-> d.getEmployee().stream()).collect(Collectors.toList());
-                    // here is a way to get all getList methods from child classes.
+                    // here is a way to get all getList methods from child classes. flatMap -> its a special map which is used to convert
+                    // a stream into another stream.
     }
 }

@@ -32,10 +32,10 @@ public class ObserverRunner {
         channel1.printNews();
 
         System.out.println("News from Channel 2: ");
-        channel1.printNews();
+        channel2.printNews();
 
         System.out.println("News from Channel 3: ");
-        channel1.printNews();
+        channel3.printNews();
 
 
 
