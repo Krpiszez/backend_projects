@@ -6,7 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ContactMessageRepository extends JpaRepository<ContactMessage, Long> {
-
-
-
+    ContactMessage findByEmail(String email);
 }
