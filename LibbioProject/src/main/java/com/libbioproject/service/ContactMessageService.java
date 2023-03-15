@@ -8,6 +8,8 @@ import com.libbioproject.exception.message.ErrorMessage;
 import com.libbioproject.mapper.ContactMessageMapper;
 import com.libbioproject.repository.ContactMessageRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,9 +43,48 @@ public class ContactMessageService {
         ContactMessage contactMessage = getContactMessageById(id);
         return contactMessageMapper.contactMessageToDTO(contactMessage);
     }
-
     public ContactMessageDTO getContactMessageDTOByEmail(String email) {
-        ContactMessage contactMessage = contactMessageRepository.findByEmail(email);
+        ContactMessage contactMessage = contactMessageRepository.findByEmail(email)
+                .orElseThrow(()-> new ResourceNotFound(String.format(ErrorMessage.RESOURCE_NOT_FOUND_MESSAGE_EMAIL, email)));
         return contactMessageMapper.contactMessageToDTO(contactMessage);
+    }
+    public ContactMessage getContactMessageByName(String name){
+        return contactMessageRepository.findByName(name)
+                .orElseThrow(()-> new ResourceNotFound(String.format(ErrorMessage.RESOURCE_NOT_FOUND_MESSAGE_EMAIL, name)));
+    }
+
+    public void updateById(Long id, ContactMessageRequest contactMessageRequest) {
+        ContactMessage contactMessageToUpdate = getContactMessageById(id);
+        ContactMessage contactMessageNew = contactMessageMapper.contactMessageRequestToContactMessage(contactMessageRequest);
+
+        contactMessageToUpdate.setName(contactMessageNew.getName());
+        contactMessageToUpdate.setBody(contactMessageNew.getBody());
+        contactMessageToUpdate.setEmail(contactMessageNew.getBody());
+        contactMessageToUpdate.setSubject(contactMessageNew.getSubject());
+
+        contactMessageRepository.save(contactMessageToUpdate);
+
+    }
+    public void updateByName(String name, ContactMessageRequest contactMessageRequest) {
+        ContactMessage contactMessageToUpdate = getContactMessageByName(name);
+        ContactMessage contactMessageNew = contactMessageMapper.contactMessageRequestToContactMessage(contactMessageRequest);
+
+        contactMessageToUpdate.setName(contactMessageNew.getName());
+        contactMessageToUpdate.setBody(contactMessageNew.getBody());
+        contactMessageToUpdate.setEmail(contactMessageNew.getBody());
+        contactMessageToUpdate.setSubject(contactMessageNew.getSubject());
+
+        contactMessageRepository.save(contactMessageToUpdate);
+    }
+    public void deleteContactMessage(Long id) {
+        ContactMessage contactMessage = getContactMessageById(id);
+        contactMessageRepository.delete(contactMessage);
+    }
+    public Page<ContactMessageDTO> getAllByPage(Pageable pageable) {
+        Page<ContactMessage> contactMessagePage = contactMessageRepository.findAll(pageable);
+        return mapPageable(contactMessagePage);
+    }
+    private Page<ContactMessageDTO> mapPageable(Page<ContactMessage> contactMessagePage){
+        return contactMessagePage.map(contactMessage -> contactMessageMapper.contactMessageToDTO(contactMessage));
     }
 }
