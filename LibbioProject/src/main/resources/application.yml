@@ -1,0 +1,72 @@
+
+server:
+  port: 8080
+
+  error:
+    include-binding-errors: always
+    include-message: always
+    include-stacktrace: never
+
+    #servlet:
+    #context-path: /api/v0
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/libbio_db
+    username: mvc_user
+    password: mvc_password
+    driver-class-name: org.postgresql.Driver
+
+      #main:
+      #allow-circular-references: true
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    properties:
+      '[hibernate.format_sql]': true
+
+  servlet:
+    multipart:
+      max-file-size: 2MB
+      max-request-size: 2MB
+
+logging:
+  file:
+    name: logs/libbio.log
+  pattern:
+    file: "%d %-5level [%thread] %logger:%msg%n"
+  level:
+    '[org.springframework.web]': WARN
+    '[org.hibernate]': INFO
+    '[com.visionrent]': DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+  info:
+    env:
+      enabled: true
+
+  endpoint:
+    health:
+      show-details: always
+
+    shutdown:
+      enabled: true
+
+libbio:
+  app:
+    jwtSecret: libBio@!23
+    jwtExpirationMs: 86400000
+
+info:
+  application:
+    name: 'Libbio Backend App'
+    description: 'This is Libbio Library Backend Project'
+    version: '@project.version@'
