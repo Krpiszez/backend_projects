@@ -13,7 +13,6 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LoginRequest {
-
     @Email(message = "Please provide a valid email!")
     private String email;
     @NotBlank(message = "Please provide a password!")
