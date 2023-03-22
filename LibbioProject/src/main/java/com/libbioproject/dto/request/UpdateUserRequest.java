@@ -1,5 +1,5 @@
 package com.libbioproject.dto.request;
 
-public interface UpdateRequest {
+public interface UpdateUserRequest {
     String getEmail();
 }

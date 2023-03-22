@@ -15,7 +15,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AdminUserUpdateRequest implements UpdateRequest{
+public class AdminUserUpdateRequest implements UpdateUserRequest {
 
     @Size(max = 50)
     @NotBlank(message = "Please provide your First name")

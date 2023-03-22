@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserUpdateRequest implements UpdateRequest{
+public class UserUpdateRequest implements UpdateUserRequest {
     @Size(max = 50)
     @NotBlank(message = "Please provide your first name!")
     private String firstName;

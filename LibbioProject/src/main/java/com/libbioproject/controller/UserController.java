@@ -2,6 +2,7 @@ package com.libbioproject.controller;
 
 import com.libbioproject.dto.UserDTO;
 import com.libbioproject.dto.request.AdminUserUpdateRequest;
+import com.libbioproject.dto.request.UpdatePasswordRequest;
 import com.libbioproject.dto.request.UserUpdateRequest;
 import com.libbioproject.dto.response.LResponse;
 import com.libbioproject.dto.response.ResponseMessage;
@@ -72,6 +73,12 @@ public class UserController {
                                                     @Valid @RequestBody AdminUserUpdateRequest adminUserUpdateRequest){
         userService.updateUserById(id, adminUserUpdateRequest);
         LResponse response = new LResponse(ResponseMessage.USER_UPDATE_RESPONSE, true);
+        return ResponseEntity.ok(response);
+    }
+    @PatchMapping("/auth/password")
+    public ResponseEntity<LResponse> updatePassword(@Valid @RequestBody UpdatePasswordRequest updatePasswordRequest){
+        userService.updatePassword(updatePasswordRequest);
+        LResponse response = new LResponse(ResponseMessage.PASSWORD_UPDATE_MESSAGE, true);
         return ResponseEntity.ok(response);
     }
 

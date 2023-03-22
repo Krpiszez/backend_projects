@@ -4,10 +4,7 @@ import com.libbioproject.domain.Role;
 import com.libbioproject.domain.User;
 import com.libbioproject.domain.enums.RoleType;
 import com.libbioproject.dto.UserDTO;
-import com.libbioproject.dto.request.AdminUserUpdateRequest;
-import com.libbioproject.dto.request.RegisterRequest;
-import com.libbioproject.dto.request.UpdateRequest;
-import com.libbioproject.dto.request.UserUpdateRequest;
+import com.libbioproject.dto.request.*;
 import com.libbioproject.exception.BadRequestException;
 import com.libbioproject.exception.ConflictException;
 import com.libbioproject.exception.ResourceNotFound;
@@ -56,7 +53,7 @@ public class UserService {
             throw new BadRequestException(ErrorMessage.NOT_PERMITTED_METHOD_MESSAGE);
         }
     }
-    private static void canNotUpdatedEmailConfliction(UpdateRequest updateRequest, User currentUser, boolean emailExist) {
+    private static void canNotUpdatedEmailConfliction(UpdateUserRequest updateRequest, User currentUser, boolean emailExist) {
         if (emailExist && !currentUser.getEmail().equals(updateRequest.getEmail())){
             throw new ConflictException(String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE, currentUser.getEmail()));
         }
@@ -167,4 +164,14 @@ public class UserService {
         userRepository.save(user);
     }
 
+    public void updatePassword(UpdatePasswordRequest updatePasswordRequest) {
+        User user = getCurrentUser();
+        noPermittedBuiltIn(user);
+        if (!passwordEncoder.matches(updatePasswordRequest.getOldPassword(), user.getPassword())){
+            throw new BadRequestException(ErrorMessage.PASSWORD_NOT_MATCHED);
+        }
+        String encodedPassword = passwordEncoder.encode(updatePasswordRequest.getNewPassword());
+        user.setPassword(encodedPassword);
+        userRepository.save(user);
+    }
 }
