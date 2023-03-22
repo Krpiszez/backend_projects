@@ -2,7 +2,7 @@ package com.libbioproject.domain.enums;
 
 public enum RoleType {
 
-    ROLE_USER("Customer"),
+    ROLE_CUSTOMER("Customer"),
     ROLE_ADMIN("Administrator");
 
     private String name;
