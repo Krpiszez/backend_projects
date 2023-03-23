@@ -5,6 +5,7 @@ import com.libbioproject.domain.User;
 import com.libbioproject.domain.enums.RoleType;
 import com.libbioproject.dto.UserDTO;
 import com.libbioproject.dto.request.*;
+import com.libbioproject.dto.response.ResponseMessage;
 import com.libbioproject.exception.BadRequestException;
 import com.libbioproject.exception.ConflictException;
 import com.libbioproject.exception.ResourceNotFound;
@@ -74,12 +75,16 @@ public class UserService {
             roles.add(userRole);
         } else{
             strRoles.forEach(roleStr -> {
-                if (roleStr.equals(RoleType.ROLE_ADMIN.getName())){
-                    Role roleAdmin = roleService.findByType(RoleType.ROLE_ADMIN);
-                    roles.add(roleAdmin);
+                if(!roleStr.equals(RoleType.ROLE_CUSTOMER.getName()) || !roleStr.equals(RoleType.ROLE_ADMIN.getName())){
+                    throw new ResourceNotFound(String.format(ErrorMessage.ROLE_NOT_FOUND_EXCEPTION, roleStr));
                 } else {
-                    Role roleUser = roleService.findByType(RoleType.ROLE_CUSTOMER);
-                    roles.add(roleUser);
+                    if (roleStr.equals(RoleType.ROLE_ADMIN.getName())){
+                        Role roleAdmin = roleService.findByType(RoleType.ROLE_ADMIN);
+                        roles.add(roleAdmin);
+                    } else {
+                        Role roleUser = roleService.findByType(RoleType.ROLE_CUSTOMER);
+                        roles.add(roleUser);
+                    }
                 }
             });
         }
