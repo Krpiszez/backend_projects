@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -30,26 +31,31 @@ public class ContactMessageController {
         LResponse response = new LResponse(ResponseMessage.CONTACT_MESSAGE_SAVE_RESPONSE, true);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
+    @PreAuthorize("(hasRole('ADMIN'))")
     @GetMapping
     public ResponseEntity<List<ContactMessageDTO>> getAllDTO(){
         List<ContactMessageDTO> contactMessageDTOList = contactMessageService.getAllDTO();
         return ResponseEntity.ok(contactMessageDTOList);
     }
+    @PreAuthorize("(hasRole('ADMIN'))")
     @GetMapping("{id}")
     public ResponseEntity<ContactMessageDTO> getContactMessageByPath(@PathVariable Long id){
         ContactMessageDTO contactMessageDTO = contactMessageService.getContactMessageDTOById(id);
         return ResponseEntity.ok(contactMessageDTO);
     }
+    @PreAuthorize("(hasRole('ADMIN'))")
     @GetMapping("/request")
     public ResponseEntity<ContactMessageDTO> getContactMessageByParam(@RequestParam("id") Long id){
         ContactMessageDTO contactMessageDTO = contactMessageService.getContactMessageDTOById(id);
         return ResponseEntity.ok(contactMessageDTO);
     }
+    @PreAuthorize("(hasRole('ADMIN'))")
     @GetMapping("name")
     public ResponseEntity<ContactMessageDTO> getContactMessageByEmail(@RequestParam("email") String email){
         ContactMessageDTO contactMessageDTO = contactMessageService.getContactMessageDTOByEmail(email);
         return ResponseEntity.ok(contactMessageDTO);
     }
+    @PreAuthorize("(hasRole('ADMIN'))")
     @PutMapping("{id}")
     public ResponseEntity<LResponse> updateContactMessageById(@PathVariable Long id,
                                                               @RequestBody @Valid ContactMessageRequest contactMessageRequest){
@@ -57,6 +63,7 @@ public class ContactMessageController {
         LResponse response = new LResponse(ResponseMessage.CONTACT_MESSAGE_UPDATE_RESPONSE, true);
         return ResponseEntity.ok(response);
     }
+    @PreAuthorize("(hasRole('ADMIN'))")
     @PutMapping("/update")
     public ResponseEntity<LResponse> updateContactMessageByName(@RequestParam("name") String name,
                                                                 @RequestBody @Valid ContactMessageRequest contactMessageRequest){
@@ -64,12 +71,14 @@ public class ContactMessageController {
         LResponse response = new LResponse(ResponseMessage.CONTACT_MESSAGE_UPDATE_RESPONSE, true);
         return ResponseEntity.ok(response);
     }
+    @PreAuthorize("(hasRole('ADMIN'))")
     @DeleteMapping("{id}")
     public ResponseEntity<LResponse> deleteContactMessageById(@PathVariable Long id){
         contactMessageService.deleteContactMessage(id);
         LResponse response = new LResponse(ResponseMessage.CONTACT_MESSAGE_DELETE_RESPONSE, true);
         return ResponseEntity.ok(response);
     }
+    @PreAuthorize("(hasRole('ADMIN'))")
     @GetMapping("/page")
     public ResponseEntity<Page<ContactMessageDTO>> getAllDTO(@RequestParam("page") int page,
                                                              @RequestParam("size") int size,
