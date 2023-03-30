@@ -17,8 +17,10 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long bookId;
     @Column(nullable = false, unique = true)
     private String name;
+    @OneToOne
+    private ImageFile imageFile;
 
 }
