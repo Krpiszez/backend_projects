@@ -31,12 +31,11 @@ public class UserService {
     private RoleService roleService;
     private UserMapper userMapper;
 
-    public UserService(UserRepository userRepository, RoleService roleService, @Lazy PasswordEncoder passwordEncoder,
-                       UserMapper userMapper){
-        this.userRepository = userRepository;
-        this.roleService = roleService;
-        this.userMapper = userMapper;
-        this.passwordEncoder = passwordEncoder;
+    public UserService (UserRepository userRepository,RoleService roleService,@Lazy PasswordEncoder passwordEncoder,UserMapper userMapper) {
+        this.userRepository=userRepository;
+        this.roleService=roleService;
+        this.passwordEncoder=passwordEncoder;
+        this.userMapper=userMapper;
     }
     private Page<UserDTO> pageUserToDTO(Page<User> userPage){
         return userPage.map(user -> userMapper.userToDTO(user));

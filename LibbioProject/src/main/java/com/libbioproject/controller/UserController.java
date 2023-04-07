@@ -7,7 +7,6 @@ import com.libbioproject.dto.request.UserUpdateRequest;
 import com.libbioproject.dto.response.LResponse;
 import com.libbioproject.dto.response.ResponseMessage;
 import com.libbioproject.service.UserService;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

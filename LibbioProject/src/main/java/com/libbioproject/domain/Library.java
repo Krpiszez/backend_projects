@@ -18,7 +18,7 @@ public class Library {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long libraryId;
+    private Long id;
     @Column(nullable = false)
     private String language;
     @Column(nullable = false)
