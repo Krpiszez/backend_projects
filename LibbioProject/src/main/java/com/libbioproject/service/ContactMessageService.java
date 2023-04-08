@@ -3,7 +3,7 @@ package com.libbioproject.service;
 import com.libbioproject.domain.ContactMessage;
 import com.libbioproject.dto.ContactMessageDTO;
 import com.libbioproject.dto.request.ContactMessageRequest;
-import com.libbioproject.exception.ResourceNotFound;
+import com.libbioproject.exception.ResourceNotFoundException;
 import com.libbioproject.exception.message.ErrorMessage;
 import com.libbioproject.mapper.ContactMessageMapper;
 import com.libbioproject.repository.ContactMessageRepository;
@@ -36,7 +36,7 @@ public class ContactMessageService {
     private ContactMessage getContactMessageById(Long id){
         return contactMessageRepository
                 .findById(id)
-                .orElseThrow(()-> new ResourceNotFound(String.format(ErrorMessage.RESOURCE_NOT_FOUND_MESSAGE, id)));
+                .orElseThrow(()-> new ResourceNotFoundException(String.format(ErrorMessage.RESOURCE_NOT_FOUND_MESSAGE, id)));
     }
 
     public ContactMessageDTO getContactMessageDTOById(Long id) {
@@ -45,12 +45,12 @@ public class ContactMessageService {
     }
     public ContactMessageDTO getContactMessageDTOByEmail(String email) {
         ContactMessage contactMessage = contactMessageRepository.findByEmail(email)
-                .orElseThrow(()-> new ResourceNotFound(String.format(ErrorMessage.RESOURCE_NOT_FOUND_MESSAGE_EMAIL, email)));
+                .orElseThrow(()-> new ResourceNotFoundException(String.format(ErrorMessage.RESOURCE_NOT_FOUND_MESSAGE_EMAIL, email)));
         return contactMessageMapper.contactMessageToDTO(contactMessage);
     }
     public ContactMessage getContactMessageByName(String name){
         return contactMessageRepository.findByName(name)
-                .orElseThrow(()-> new ResourceNotFound(String.format(ErrorMessage.RESOURCE_NOT_FOUND_MESSAGE_EMAIL, name)));
+                .orElseThrow(()-> new ResourceNotFoundException(String.format(ErrorMessage.RESOURCE_NOT_FOUND_MESSAGE_EMAIL, name)));
     }
 
     public void updateById(Long id, ContactMessageRequest contactMessageRequest) {

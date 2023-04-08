@@ -5,10 +5,9 @@ import com.libbioproject.domain.User;
 import com.libbioproject.domain.enums.RoleType;
 import com.libbioproject.dto.UserDTO;
 import com.libbioproject.dto.request.*;
-import com.libbioproject.dto.response.ResponseMessage;
 import com.libbioproject.exception.BadRequestException;
 import com.libbioproject.exception.ConflictException;
-import com.libbioproject.exception.ResourceNotFound;
+import com.libbioproject.exception.ResourceNotFoundException;
 import com.libbioproject.exception.message.ErrorMessage;
 import com.libbioproject.mapper.UserMapper;
 import com.libbioproject.repository.UserRepository;
@@ -42,11 +41,11 @@ public class UserService {
     }
     public User getUserByEmail(String email) {
         return userRepository.findByEmail(email).orElseThrow(
-                ()-> new ResourceNotFound(String.format(ErrorMessage.RESOURCE_NOT_FOUND_MESSAGE_EMAIL, email)));
+                ()-> new ResourceNotFoundException(String.format(ErrorMessage.RESOURCE_NOT_FOUND_MESSAGE_EMAIL, email)));
     }
     public User getUserById(Long id){
         return userRepository.findById(id).orElseThrow(
-                ()-> new ResourceNotFound(String.format(ErrorMessage.RESOURCE_NOT_FOUND_MESSAGE,id)));
+                ()-> new ResourceNotFoundException(String.format(ErrorMessage.RESOURCE_NOT_FOUND_MESSAGE,id)));
     }
     public static void noPermittedBuiltIn(User user){
         if (user.getBuiltIn()){
@@ -64,7 +63,7 @@ public class UserService {
     }
     private User getCurrentUser() {
         String email = SecurityUtils.getCurrentUserLogin().orElseThrow(
-                ()-> new ResourceNotFound(ErrorMessage.PRINCIPAL_NOT_FOUND_MESSAGE));
+                ()-> new ResourceNotFoundException(ErrorMessage.PRINCIPAL_NOT_FOUND_MESSAGE));
         return getUserByEmail(email);
     }
     private Set<Role> convertRoles(Set<String> strRoles){
@@ -75,7 +74,7 @@ public class UserService {
         } else{
             strRoles.forEach(roleStr -> {
                 if(!roleStr.equals(RoleType.ROLE_CUSTOMER.getName()) || !roleStr.equals(RoleType.ROLE_ADMIN.getName())){
-                    throw new ResourceNotFound(String.format(ErrorMessage.ROLE_NOT_FOUND_EXCEPTION, roleStr));
+                    throw new ResourceNotFoundException(String.format(ErrorMessage.ROLE_NOT_FOUND_EXCEPTION, roleStr));
                 } else {
                     if (roleStr.equals(RoleType.ROLE_ADMIN.getName())){
                         Role roleAdmin = roleService.findByType(RoleType.ROLE_ADMIN);
