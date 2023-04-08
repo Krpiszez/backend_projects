@@ -1,6 +1,7 @@
 package com.libbioproject.repository;
 
 import com.libbioproject.domain.User;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -11,8 +12,10 @@ import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-
+    @EntityGraph(attributePaths = "roles")
     Optional<User> findByEmail(String email);
+    @EntityGraph(attributePaths = "roles")
+    Optional<User> findById(Long id);
 
     boolean existsByEmail(String email);
     @Query("update User u set u.firstName = :firstName, u.lastName = :lastName, u.phoneNumber = :phoneNumber, u.email = :email, " +

@@ -30,7 +30,7 @@ public class UserController {
         List<UserDTO> userDTOList = userService.getAllUsers();
         return ResponseEntity.ok(userDTOList);
     }
-    @PreAuthorize("(hasRole('ADMIN') or hasRole('CUSTOMER'))")
+    @PreAuthorize("(hasRole('ADMIN') or hasRole('CUSTOMER') or hasRole('LIBRARY_OWNER'))")
     @GetMapping
     public ResponseEntity<UserDTO> getCurrentUser(){
         UserDTO userDTO = userService.getPrincipal();
@@ -87,6 +87,13 @@ public class UserController {
     public ResponseEntity<LResponse> updatePassword(@Valid @RequestBody UpdatePasswordRequest updatePasswordRequest){
         userService.updatePassword(updatePasswordRequest);
         LResponse response = new LResponse(ResponseMessage.PASSWORD_UPDATE_MESSAGE, true);
+        return ResponseEntity.ok(response);
+    }
+    @PreAuthorize("hasRole('ADMIN')")
+    @PatchMapping("admin/{id}")
+    public ResponseEntity<LResponse> updateRoleToAdmin(@PathVariable Long id){
+        userService.updateRoleToAdmin(id);
+        LResponse response = new LResponse(ResponseMessage.ROLE_UPDATE_TO_ADMIN_MESSAGE, true);
         return ResponseEntity.ok(response);
     }
 

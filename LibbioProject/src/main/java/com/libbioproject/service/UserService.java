@@ -63,7 +63,7 @@ public class UserService {
         return userMapper.userToDTO(currentUser);
     }
     private User getCurrentUser() {
-        String email = SecurityUtils.getCurrentUser().orElseThrow(
+        String email = SecurityUtils.getCurrentUserLogin().orElseThrow(
                 ()-> new ResourceNotFound(ErrorMessage.PRINCIPAL_NOT_FOUND_MESSAGE));
         return getUserByEmail(email);
     }
@@ -176,6 +176,13 @@ public class UserService {
         }
         String encodedPassword = passwordEncoder.encode(updatePasswordRequest.getNewPassword());
         user.setPassword(encodedPassword);
+        userRepository.save(user);
+    }
+
+    public void updateRoleToAdmin(Long id) {
+        User user = getUserById(id);
+        Role role = roleService.findByType(RoleType.ROLE_ADMIN);
+        user.getRoles().add(role);
         userRepository.save(user);
     }
 }

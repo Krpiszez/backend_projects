@@ -9,4 +9,5 @@ public class ResponseMessage {
     public static final String USER_DELETE_RESPONSE_MESSAGE = "User with id: %d, has been deleted successfully!";
     public static final String USER_UPDATE_RESPONSE = "User has been Updated Successfully!";
     public static final String PASSWORD_UPDATE_MESSAGE = "Password has been Updated Successfully!";
+    public static final String ROLE_UPDATE_TO_ADMIN_MESSAGE = "User Role has been changed as Admin!";
 }
