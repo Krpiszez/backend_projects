@@ -66,7 +66,7 @@ public class JwtUtils {
             // homework -> please create custom messages for any possible JWT exceptions.
         } catch (ExpiredJwtException | UnsupportedJwtException | MalformedJwtException
         | SignatureException | IllegalArgumentException e){
-            LOGGER.error(ErrorMessage.JWT_TOKEN_MESSAGE);
+            LOGGER.error(String.format(ErrorMessage.JWT_TOKEN_MESSAGE, e.getMessage()));
         }
         return false;
     }
