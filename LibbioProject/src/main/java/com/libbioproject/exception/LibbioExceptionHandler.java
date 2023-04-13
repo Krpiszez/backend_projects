@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @ControllerAdvice // with this annotation and the class we extend below we introduce this class to Spring Boot
 /**
  *  to create a custom exception handling system
@@ -29,10 +32,23 @@ public class LibbioExceptionHandler extends ResponseEntityExceptionHandler {
                 request.getDescription(false));
         return buildResponseEntity(error);
     }
+    @ExceptionHandler(ConflictException.class)
+    protected ResponseEntity<Object> handleConflictException(ConflictException ex,
+                                                             WebRequest request){
+        ApiResponseError err = new ApiResponseError(
+                HttpStatus.CONFLICT, ex.getMessage(), request.getDescription(false)
+        );
+
+        return buildResponseEntity(err);
+    }
 
 //    @Override
 //    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+//        List<String> errors = ex.getBindingResult().getFieldErrors()
+//                .stream().map(e->e.getDefaultMessage()).collect(Collectors.toList());
 //
+//        ApiResponseError err = new ApiResponseError(
+//                HttpStatus.BAD_REQUEST, errors.get(0).toString(), );
 //    }
     // handleMethodArgumentNotValid Bad req list.stream
     // handleTypeMismatch bad req

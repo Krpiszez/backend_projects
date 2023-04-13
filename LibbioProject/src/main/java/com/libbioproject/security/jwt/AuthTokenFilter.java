@@ -60,7 +60,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(authenticationToken);
             }
         } catch (Exception e){
-            AuthTokenFilterLogger.error("USER not Found {}:" , e.getMessage());
+            AuthTokenFilterLogger.error("User not Found {}:" , e.getMessage());
         }
         filterChain.doFilter(request,response);
 
