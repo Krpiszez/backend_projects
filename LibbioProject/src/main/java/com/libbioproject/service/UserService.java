@@ -17,6 +17,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.List;
@@ -132,6 +133,7 @@ public class UserService {
         Page<User> userPage = userRepository.findAll(pageable);
         return pageUserToDTO(userPage);
     }
+    @Transactional
     public void updateCurrentUser(UserUpdateRequest userUpdateRequest) {
         User currentUser = getCurrentUser();
         noPermittedBuiltIn(currentUser);
@@ -141,6 +143,7 @@ public class UserService {
                 userUpdateRequest.getPhoneNumber(), userUpdateRequest.getEmail(), userUpdateRequest.getAddress(),
                 userUpdateRequest.getZipCode());
     }
+    @Transactional
     public void updateUserById(Long id, AdminUserUpdateRequest adminUserUpdateRequest) {
         User user = getUserById(id);
         noPermittedBuiltIn(user);

@@ -64,6 +64,16 @@ public class LibbioExceptionHandler extends ResponseEntityExceptionHandler {
         return buildResponseEntity(err);
     }
 
+    @ExceptionHandler(BadRequestException.class)
+    protected ResponseEntity<Object> handleBadRequestException(BadRequestException ex,
+                                                                   WebRequest request){
+        ApiResponseError err = new ApiResponseError(
+                HttpStatus.BAD_REQUEST, ex.getMessage(), request.getDescription(false)
+        );
+
+        return buildResponseEntity(err);
+    }
+
 //    @Override
 //    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
 //        List<String> errors = ex.getBindingResult().getFieldErrors()
