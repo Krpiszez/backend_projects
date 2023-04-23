@@ -1,9 +1,9 @@
 package com.libbioproject.repository;
 
-import com.libbioproject.domain.BookData;
+import com.libbioproject.domain.BookContent;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface BookDataRepository extends JpaRepository<BookData, Long> {
+public interface BookContentRepository extends JpaRepository<BookContent, Long> {
 }

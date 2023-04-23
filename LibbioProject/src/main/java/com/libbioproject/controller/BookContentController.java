@@ -5,5 +5,5 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/content")
-public class BookDataController {
+public class BookContentController {
 }

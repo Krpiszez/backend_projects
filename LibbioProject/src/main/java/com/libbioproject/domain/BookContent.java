@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class BookData {
+public class BookContent {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,10 +22,10 @@ public class BookData {
     @JsonIgnore
     @Lob
     private byte[] content;
-    public BookData(byte[] data){
+    public BookContent(byte[] data){
         this.content= data;
     }
-    private BookData(Long id){
+    private BookContent(Long id){
         this.id = id;
     }
 

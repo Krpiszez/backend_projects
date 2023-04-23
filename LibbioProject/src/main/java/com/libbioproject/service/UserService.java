@@ -80,9 +80,12 @@ public class UserService {
                     if (roleStr.equals(RoleType.ROLE_ADMIN.getName())){
                         Role roleAdmin = roleService.findByType(RoleType.ROLE_ADMIN);
                         roles.add(roleAdmin);
-                    } else {
+                    }else if (roleStr.equals(RoleType.ROLE_CUSTOMER)){
                         Role roleUser = roleService.findByType(RoleType.ROLE_CUSTOMER);
                         roles.add(roleUser);
+                    } else{
+                        Role roleLibOwner = roleService.findByType(RoleType.ROLE_LIBRARY_OWNER);
+                        roles.add(roleLibOwner);
                     }
                 }
             });
@@ -143,13 +146,12 @@ public class UserService {
                 userUpdateRequest.getPhoneNumber(), userUpdateRequest.getEmail(), userUpdateRequest.getAddress(),
                 userUpdateRequest.getZipCode());
     }
-    @Transactional
     public void updateUserById(Long id, AdminUserUpdateRequest adminUserUpdateRequest) {
         User user = getUserById(id);
         noPermittedBuiltIn(user);
         boolean emailExist = userRepository.existsByEmail(adminUserUpdateRequest.getEmail());
         canNotUpdatedEmailConfliction(adminUserUpdateRequest, user, emailExist);
-        if (adminUserUpdateRequest.getEmail() == null){
+        if (adminUserUpdateRequest.getPassword() == null){
             adminUserUpdateRequest.setPassword(user.getPassword());
         } else {
             String encodedPassword = passwordEncoder.encode(adminUserUpdateRequest.getPassword());

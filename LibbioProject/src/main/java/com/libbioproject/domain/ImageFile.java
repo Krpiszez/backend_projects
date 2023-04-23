@@ -20,9 +20,9 @@ public class ImageFile {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private CoverImage coverImage;
     @OneToOne(cascade = CascadeType.ALL)
-    private BookData bookData;
+    private BookContent bookContent;
 
 }
