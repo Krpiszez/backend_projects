@@ -9,7 +9,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table(name = "t_image_file")
 @Setter
 @Getter
 @NoArgsConstructor
@@ -20,6 +20,9 @@ public class ImageFile {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
+    private String name;
+    private String type;
+    private long length;
     @OneToOne(cascade = CascadeType.ALL)
     private CoverImage coverImage;
     @OneToOne(cascade = CascadeType.ALL)

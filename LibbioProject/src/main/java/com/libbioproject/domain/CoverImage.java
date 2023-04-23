@@ -9,7 +9,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table(name = "t_cover_image")
 @Setter
 @Getter
 @NoArgsConstructor
@@ -21,9 +21,9 @@ public class CoverImage {
     private Long id;
     @JsonIgnore
     @Lob
-    private byte[] data;
+    private byte[] imageData;
     public CoverImage(byte[] data){
-        this.data = data;
+        this.imageData = data;
     }
     private CoverImage(Long id){
         this.id = id;

@@ -21,9 +21,9 @@ public class BookContent {
     private Long id;
     @JsonIgnore
     @Lob
-    private byte[] content;
+    private byte[] contentData;
     public BookContent(byte[] data){
-        this.content= data;
+        this.contentData = data;
     }
     private BookContent(Long id){
         this.id = id;
