@@ -10,4 +10,5 @@ public class ResponseMessage {
     public static final String USER_UPDATE_RESPONSE = "User has been Updated Successfully!";
     public static final String PASSWORD_UPDATE_MESSAGE = "Password has been Updated Successfully!";
     public static final String ROLE_UPDATE_TO_ADMIN_MESSAGE = "User Role has been changed as Admin!";
+    public static final String IMAGE_UPLOAD_RESPONSE_MESSAGE = "Image has been saved successfully!";
 }
