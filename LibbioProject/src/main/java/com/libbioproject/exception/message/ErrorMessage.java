@@ -3,6 +3,7 @@ package com.libbioproject.exception.message;
 public class ErrorMessage {
 
     public static final String RESOURCE_NOT_FOUND_MESSAGE = "Resource with id: %d is not found!";
+    public static final String IMAGE_NOT_FOUND_MESSAGE = "Resource with id: %s is not found!";
     public static final String RESOURCE_NOT_FOUND_MESSAGE_EMAIL = "Resource with email: %s is not found!";
     public static final String RESOURCE_NOT_FOUND_MESSAGE_NAME = "Resource with name: %s is not found!";
     public static final String JWT_TOKEN_MESSAGE = "Jwt token validation error : %s!";
