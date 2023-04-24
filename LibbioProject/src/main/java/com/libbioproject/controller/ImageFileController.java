@@ -7,6 +7,7 @@ import com.libbioproject.service.ImageFileService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -54,6 +55,22 @@ public class ImageFileController {
 
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
                 "attachment;filename="+file.getName()).body(image);
+    }
+
+    @GetMapping("displayImage/{id}")
+    public ResponseEntity<byte[]> displayImage(@PathVariable String id){
+        ImageFile imageFile = imageFileService.getImageById(id);
+        HttpHeaders header = new HttpHeaders();
+        header.setContentType(MediaType.IMAGE_JPEG);
+        return new ResponseEntity<>(imageFile.getCoverImage().getImageData(), header, HttpStatus.OK);
+    }
+
+    @GetMapping("displayContent/{id}")
+    public ResponseEntity<byte[]> displayContent(@PathVariable String id){
+        ImageFile imageFile = imageFileService.getImageById(id);
+        HttpHeaders header = new HttpHeaders();
+        header.setContentType(MediaType.APPLICATION_PDF);
+        return new ResponseEntity<>(imageFile.getBookContent().getContentData(), header, HttpStatus.OK);
     }
 
 
