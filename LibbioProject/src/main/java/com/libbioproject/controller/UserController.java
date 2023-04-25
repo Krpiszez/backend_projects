@@ -51,7 +51,7 @@ public class UserController {
     }
     @PreAuthorize("(hasRole('ADMIN'))")
     @DeleteMapping("/{id}/auth")
-    public ResponseEntity<LResponse> deleteUserById(Long id){
+    public ResponseEntity<LResponse> deleteUserById(@PathVariable Long id){
         userService.deleteUserById(id);
         LResponse response = new LResponse(String.format(ResponseMessage.USER_DELETE_RESPONSE_MESSAGE, id), true);
         return ResponseEntity.ok(response);

@@ -47,7 +47,7 @@ public class SecurityConfig {
                 // let all Http request types work
                 .and().authorizeRequests().antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
                 .and().authorizeRequests().antMatchers("/register",
-                        "/login","/files/download/**","files/display/**",
+                        "/login","/files/downloadImage/**","files/displayContent/**", "files/displayImage/**",
                         "contactmessage/visitors","/car/visitors/**",
                         "actuator/healt").permitAll()
                 .anyRequest().authenticated();

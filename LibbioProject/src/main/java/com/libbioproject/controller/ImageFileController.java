@@ -1,7 +1,9 @@
 package com.libbioproject.controller;
 
 import com.libbioproject.domain.ImageFile;
+import com.libbioproject.dto.ImageFileDTO;
 import com.libbioproject.dto.response.ImageSavedResponse;
+import com.libbioproject.dto.response.LResponse;
 import com.libbioproject.dto.response.ResponseMessage;
 import com.libbioproject.service.ImageFileService;
 import lombok.AllArgsConstructor;
@@ -12,6 +14,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/files")
@@ -40,7 +44,7 @@ public class ImageFileController {
 
     @PostMapping("/uploadContent")
     @PreAuthorize("(hasRole('ADMIN') or hasRole('LIBRARY_OWNER'))")
-    public ResponseEntity<ImageSavedResponse> uploadBookContent (@RequestParam MultipartFile file){
+    public ResponseEntity<ImageSavedResponse> uploadBookContent (@RequestParam("file") MultipartFile file){
         String imageId = imageFileService.saveContent(file);
 
         ImageSavedResponse response = new ImageSavedResponse(imageId, ResponseMessage.CONTENT_UPLOAD_RESPONSE_MESSAGE, true);
@@ -71,6 +75,29 @@ public class ImageFileController {
         HttpHeaders header = new HttpHeaders();
         header.setContentType(MediaType.APPLICATION_PDF);
         return new ResponseEntity<>(imageFile.getBookContent().getContentData(), header, HttpStatus.OK);
+    }
+
+    @GetMapping("/images")
+    @PreAuthorize("(hasRole('ADMIN') or hasRole('LIBRARY_OWNER'))")
+    public ResponseEntity<List<ImageFileDTO>> getAllImages (){
+        List<ImageFileDTO> imageFileDTOList = imageFileService.getAllImages();
+        return ResponseEntity.ok(imageFileDTOList);
+    }
+
+    @GetMapping("/contents")
+    @PreAuthorize("(hasRole('ADMIN') or hasRole('LIBRARY_OWNER'))")
+    public ResponseEntity<List<ImageFileDTO>> getAllContents(){
+        List<ImageFileDTO> imageFileDTOList = imageFileService.getAllContents();
+        return ResponseEntity.ok(imageFileDTOList);
+    }
+
+    @DeleteMapping("/{id}")
+    @PreAuthorize("(hasRole('ADMIN') or hasRole('LIBRARY_OWNER'))")
+    public ResponseEntity<LResponse> deleteImageFile(@PathVariable String id){
+        imageFileService.removeImageFileById(id);
+
+        LResponse response = new LResponse(ResponseMessage.IMAGE_DELETE_RESPONSE_MESSAGE, true);
+        return ResponseEntity.ok(response);
     }
 
 
