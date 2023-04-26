@@ -32,6 +32,6 @@ public class BookDTO {
     @NotBlank(message = "Book name can not be null!")
     private String name;
 
-    private String imageFileId;
+    private String imageFile;
 
 }

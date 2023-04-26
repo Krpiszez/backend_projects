@@ -42,7 +42,7 @@ public class UserController {
         UserDTO userDTO = userService.getUserDTOById(id);
         return ResponseEntity.ok(userDTO);
     }
-    @PreAuthorize("(hasRole('ADMIN') or hasRole('CUSTOMER'))")
+    @PreAuthorize("(hasRole('ADMIN') or hasRole('CUSTOMER') or hasRole('LIBRARY_OWNER'))")
     @DeleteMapping
     public ResponseEntity<LResponse> deleteCurrentUser(){
         userService.deleteCurrentUser();
@@ -67,7 +67,7 @@ public class UserController {
         Page<UserDTO> userDTOPage = userService.getAllUsersByPage(pageable);
         return ResponseEntity.ok(userDTOPage);
     }
-    @PreAuthorize("(hasRole('ADMIN') or hasRole('CUSTOMER'))")
+    @PreAuthorize("(hasRole('ADMIN') or hasRole('CUSTOMER') or hasRole('LIBRARY_OWNER'))")
     @PutMapping
     public ResponseEntity<LResponse> updateCurrentUser(@Valid @RequestBody UserUpdateRequest userUpdateRequest){
         userService.updateCurrentUser(userUpdateRequest);
@@ -82,14 +82,14 @@ public class UserController {
         LResponse response = new LResponse(ResponseMessage.USER_UPDATE_RESPONSE, true);
         return ResponseEntity.ok(response);
     }
-    @PreAuthorize("(hasRole('ADMIN') or hasRole('CUSTOMER'))")
+    @PreAuthorize("(hasRole('ADMIN') or hasRole('CUSTOMER') or hasRole('LIBRARY_OWNER'))")
     @PatchMapping("/auth/password")
     public ResponseEntity<LResponse> updatePassword(@Valid @RequestBody UpdatePasswordRequest updatePasswordRequest){
         userService.updatePassword(updatePasswordRequest);
         LResponse response = new LResponse(ResponseMessage.PASSWORD_UPDATE_MESSAGE, true);
         return ResponseEntity.ok(response);
     }
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('LIBRARY_OWNER')")
     @PatchMapping("admin/{id}")
     public ResponseEntity<LResponse> updateRoleToAdmin(@PathVariable Long id){
         userService.updateRoleToAdmin(id);

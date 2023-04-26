@@ -89,4 +89,10 @@ public class ImageFileService {
     public void removeImageFileById(String id) {
         imageFileRepository.deleteById(id);
     }
+
+    public ImageFile findImageById(String imageId) {
+        return imageFileRepository.findImageById(imageId).orElseThrow(()->{
+            throw new ResourceNotFoundException(String.format(ErrorMessage.IMAGE_NOT_FOUND_MESSAGE, imageId));
+        });
+    }
 }

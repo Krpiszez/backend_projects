@@ -12,6 +12,7 @@ public class ErrorMessage {
     public static final String PRINCIPAL_NOT_FOUND_MESSAGE = "User not found!";
     public static final String NOT_PERMITTED_METHOD_MESSAGE = "You don't have any permission to change this data!";
     public static final String PASSWORD_NOT_MATCHED = "Your passwords are not matched!";
+    public static final String IMAGE_USED_MESSAGE = "Image is used by another Book!";
 
 
 
