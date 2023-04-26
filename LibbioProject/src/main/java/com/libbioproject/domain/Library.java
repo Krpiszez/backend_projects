@@ -23,6 +23,8 @@ public class Library {
     private String language;
     @Column(nullable = false)
     private String libraryName;
+    @Column(nullable = false)
+    private Double pricePerMonth;
     @ManyToMany
     @JoinTable(name = "lib_book",
             joinColumns = @JoinColumn(name = "library_id"),
