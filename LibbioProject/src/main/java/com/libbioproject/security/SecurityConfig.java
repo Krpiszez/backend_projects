@@ -48,7 +48,7 @@ public class SecurityConfig {
                 .and().authorizeRequests().antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
                 .and().authorizeRequests().antMatchers("/register",
                         "/login","/files/downloadImage/**","files/displayContent/**", "files/displayImage/**",
-                        "contactmessage/visitors","/car/visitors/**",
+                        "contactmessage/visitors","/book/visitors/**",
                         "actuator/healt").permitAll()
                 .anyRequest().authenticated();
         //we are adding our filer to spring security
