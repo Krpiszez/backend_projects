@@ -67,4 +67,14 @@ public class BookController {
         return ResponseEntity.ok(response);
 
     }
+
+    @DeleteMapping("/admin/{id}/auth")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<LResponse> deleteBook(@PathVariable Long id){
+        bookService.removeBookById(id);
+        LResponse response = new LResponse(ResponseMessage.BOOK_DELETED_RESPONSE_MESSAGE, true);
+        return ResponseEntity.ok(response);
+    }
+
+
 }

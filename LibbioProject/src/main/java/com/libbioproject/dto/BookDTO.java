@@ -31,7 +31,10 @@ public class BookDTO {
     @Size(min = 4, max = 50, message = "Size ${validatedValue} must be between {min} and {max} chars long!")
     @NotBlank(message = "Book name can not be null!")
     private String name;
+    @NotBlank(message = "Set the user!")
+    private boolean builtIn;
 
     private String imageFile;
+
 
 }

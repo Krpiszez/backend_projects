@@ -25,4 +25,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     @EntityGraph(attributePaths = {"imageFile"})
     Optional<Book> findBookById(Long id);
+
+    @Query("select b from Book b join b.image im where im.id=:id")
+    List<Book> findBooksByImageId(@Param("id") String id);
 }

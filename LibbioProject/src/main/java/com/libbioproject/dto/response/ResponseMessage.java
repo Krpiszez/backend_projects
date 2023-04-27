@@ -15,4 +15,5 @@ public class ResponseMessage {
     public static final String IMAGE_DELETE_RESPONSE_MESSAGE = "Image has been deleted successfully!";
     public static final String BOOK_SAVED_RESPONSE_MESSAGE = "Book has been saved successfully!";
     public static final String BOOK_UPDATED_RESPONSE_MESSAGE = "Book has been updated successfully!";
+    public static final String BOOK_DELETED_RESPONSE_MESSAGE = "Book has been deleted successfully!";
 }

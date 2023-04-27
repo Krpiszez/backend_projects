@@ -27,6 +27,8 @@ public class Book {
     private LocalDateTime publicationDate;
     @Column(nullable = false, unique = true)
     private String name;
+    @Column(nullable = false)
+    private boolean builtIn;
     @OneToOne
     private ImageFile imageFile;
 

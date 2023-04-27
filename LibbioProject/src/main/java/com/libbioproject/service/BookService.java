@@ -3,6 +3,7 @@ package com.libbioproject.service;
 import com.libbioproject.domain.Book;
 import com.libbioproject.domain.ImageFile;
 import com.libbioproject.dto.BookDTO;
+import com.libbioproject.exception.BadRequestException;
 import com.libbioproject.exception.ConflictException;
 import com.libbioproject.exception.ResourceNotFoundException;
 import com.libbioproject.exception.message.ErrorMessage;
@@ -62,6 +63,34 @@ public class BookService {
     }
 
     public void updateBook(Long id, String imageId, BookDTO bookDTO) {
+        Book book = findBookPojoById(id);
+        isBuiltIn(book);
+        ImageFile imageFile = imageFileService.findImageById(imageId);
 
+        List<Book> bookList = bookRepository.findBooksByImageId(imageFile.getId());
+        for (Book b: bookList){
+            if (book.getId().longValue() != b.getId().longValue()){
+                throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
+            }
+        }
+        book.setName(bookDTO.getName());
+        book.setAuthor(bookDTO.getAuthor());
+        book.setDescription(bookDTO.getDescription());
+        book.setPublicationDate(bookDTO.getPublicationDate());
+        book.setBuiltIn(bookDTO.isBuiltIn());
+        book.setImageFile(imageFile);
+
+        bookRepository.save(book);
+    }
+
+    public void removeBookById(Long id) {
+        Book book = findBookPojoById(id);
+        isBuiltIn(book);
+    }
+
+    private void isBuiltIn(Book book) {
+        if (book.isBuiltIn()){
+            throw new BadRequestException(ErrorMessage.NOT_PERMITTED_METHOD_MESSAGE);
+        }
     }
 }
