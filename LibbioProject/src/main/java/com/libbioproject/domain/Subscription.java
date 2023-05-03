@@ -21,8 +21,10 @@ public class Subscription {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
     @OneToOne
+    @JoinColumn(name = "library_id", referencedColumnName = "id")
     private Library library;
     @Column(nullable = false)
     private LocalDateTime subscriptionStartTime;
