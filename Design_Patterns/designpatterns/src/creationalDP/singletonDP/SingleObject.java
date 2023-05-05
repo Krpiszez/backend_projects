@@ -7,6 +7,10 @@ public class SingleObject {
     // here INSTANCE object is created.
     private static SingleObject instance = new SingleObject(); // this object is being used throughout project
 
+//    private SingleObject(){
+//        this.message = "HI!";
+//    }
+
     // here object is created by using instance object above.
     public static SingleObject getInstance(){
         return instance;
