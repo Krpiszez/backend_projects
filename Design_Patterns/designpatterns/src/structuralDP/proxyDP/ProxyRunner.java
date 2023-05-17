@@ -9,6 +9,18 @@ public class ProxyRunner {
 
         proxyClass1.showImageName();
         proxyClass2.showImageName();
+        System.out.println(prime(163));
 
+    }
+
+    private static boolean prime(int a){
+        boolean res = false;
+        for (int i = 2; i<a; i++){
+            if( a % i == 0){
+                res = true;
+                break;
+            }
+        }
+        return res;
     }
 }
