@@ -28,7 +28,6 @@ public class SecurityUtils {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         Authentication authentication = securityContext.getAuthentication();
         return Optional.ofNullable(extractPrincipal(authentication));
-
     }
 
     /**

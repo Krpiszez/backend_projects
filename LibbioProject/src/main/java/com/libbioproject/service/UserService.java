@@ -98,7 +98,7 @@ public class UserService {
         if (userRepository.existsByEmail(registerRequest.getEmail())){
             throw new ConflictException(String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE, registerRequest.getEmail()));
         }
-        String encodedPassword = passwordEncoder.encode(registerRequest.getEmail());
+        String encodedPassword = passwordEncoder.encode(registerRequest.getPassword());
         Role role = roleService.findByType(RoleType.ROLE_CUSTOMER);
         Set<Role> roles = new HashSet<>();
         roles.add(role);
