@@ -1,6 +1,6 @@
 package class_hierarchy;
 
-class FigureFalse {
+class FigureFalse { // bad implementation making class complicated because not doing single job
 
     enum Shape {
         RECTANGLE, CIRCLE
