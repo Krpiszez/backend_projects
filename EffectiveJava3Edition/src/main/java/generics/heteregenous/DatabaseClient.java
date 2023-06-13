@@ -5,9 +5,9 @@ public class DatabaseClient {
 	// Client
 	public static void main(String[] args) 
 	{
-		Column<Integer> integerColumn = new Column<Integer>(Integer.class);
-		Column<String> stringColumn = new Column<String>(String.class);
-		Column<String> stringColumn2 = new Column<String>(String.class);
+		Column<Integer> integerColumn = new Column<>(Integer.class);
+		Column<String> stringColumn = new Column<>(String.class);
+		Column<String> stringColumn2 = new Column<>(String.class);
 
 		DatabaseRow databaseRow = new DatabaseRow();
 		databaseRow.putColumn(integerColumn, 3);
