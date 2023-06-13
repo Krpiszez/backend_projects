@@ -7,7 +7,7 @@ import java.util.Objects;
 //Typesafe heterogeneous container pattern (Pages 151-4)
 public class Favorites implements FavoritesContract {
 	
-	private Map<Class<?>, Object> favorites = new HashMap<>();
+	private final Map<Class<?>, Object> favorites = new HashMap<>();
 
 	public <T> void putFavorite(Class<T> type, T instance) 
 	{
@@ -25,7 +25,7 @@ public class Favorites implements FavoritesContract {
 	//     favorites.put(Objects.requireNonNull(type), type.cast(instance));
 	// }
 
-	public void herHangi()
+	public void any()
 	{
 		
 	}

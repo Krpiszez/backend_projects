@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class DatabaseRow {
 
-	private Map<Column<?>, Object> columns = new HashMap<Column<?>, Object>();
+	private final Map<Column<?>, Object> columns = new HashMap<>();
 
 	public <T> void putColumn(Column<T> type, T instance) 
 	{
