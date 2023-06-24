@@ -1,6 +1,6 @@
 package enums_strategy_dp;
 
-public enum Operations {
+public enum Operation {
 
     PLUS("+"){
         public double apply(double x, double y){return x+y;}
@@ -28,7 +28,7 @@ public enum Operations {
 
     private final String symbol;
 
-    Operations(String symbol){
+    Operation(String symbol){
         this.symbol = symbol;
     }
 
