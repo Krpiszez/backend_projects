@@ -1,6 +1,7 @@
-package com.effectivejava.tutorial.effectivejava.itema37;
+package enummap;
 
 import java.util.*;
+
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toSet;
 
@@ -37,7 +38,7 @@ class Plant {
 		// Dizilerle genericler uyumlu değiller. Kontrolsüz tür dönüştürmek zorunda kalıyoruz.
 		// indis sorumluluğu senin üstünde
 		
-		Set<Plant>[] plantsByLifeCycleArr = (Set<Plant>[]) new Set[Plant.LifeCycle.values().length];
+		Set<Plant>[] plantsByLifeCycleArr = (Set<Plant>[]) new Set[LifeCycle.values().length];
 		
 		for (int i = 0; i < plantsByLifeCycleArr.length; i++)
 			plantsByLifeCycleArr[i] = new HashSet<>();
@@ -45,14 +46,14 @@ class Plant {
 			plantsByLifeCycleArr[p.lifeCycle.ordinal()].add(p);
 		// Print the results
 		for (int i = 0; i < plantsByLifeCycleArr.length; i++) {
-			System.out.printf("%s: %s%n", Plant.LifeCycle.values()[i], plantsByLifeCycleArr[i]);
+			System.out.printf("%s: %s%n", LifeCycle.values()[i], plantsByLifeCycleArr[i]);
 		}
 		
 		System.out.println("----------------");
 
 		// Using an EnumMap to associate data with an enum (Page 172)
-		Map<Plant.LifeCycle, Set<Plant>> plantsByLifeCycle = new EnumMap<>(Plant.LifeCycle.class);
-		for (Plant.LifeCycle lc : Plant.LifeCycle.values())
+		Map<LifeCycle, Set<Plant>> plantsByLifeCycle = new EnumMap<>(LifeCycle.class);
+		for (LifeCycle lc : LifeCycle.values())
 			plantsByLifeCycle.put(lc, new HashSet<>());
 		for (Plant p : garden)
 			plantsByLifeCycle.get(p.lifeCycle).add(p);
