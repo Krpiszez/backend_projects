@@ -35,9 +35,4 @@ public enum BasicOperation implements Operation{
                 "symbol='" + symbol + '\'' +
                 '}';
     }
-
-    @Override
-    public double apply(double x, double y) {
-        return 0;
-    }
 }
