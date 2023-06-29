@@ -17,13 +17,13 @@ public class TestReflection {
 		try
 		{
 			// Joker tipleri wild- unchecked
-			Class<?> sınıf = Class.forName("com.effectivejava.tutorial.effectivejava.itema39.reflection.Metallica");
-			Object obj = sınıf.newInstance();
-			//Object obj2 = sınıf.getDeclaredConstructor().newInstance();
+			Class<?> aClass = Class.forName("com.effectivejava.tutorial.effectivejava.itema39.reflection.Metallica");
+			Object obj = aClass.newInstance();
+			//Object obj2 = aClass.getDeclaredConstructor().newInstance();
 			// Varargs..
-			Constructor<?> cons = sınıf.getDeclaredConstructor(String.class, Integer.TYPE);
+			Constructor<?> cons = aClass.getDeclaredConstructor(String.class, Integer.TYPE);
 			
-			for (Field field : sınıf.getDeclaredFields()) 
+			for (Field field : aClass.getDeclaredFields())
 			{
 				System.out.println("Field:" + field.getName());
 			}
@@ -44,24 +44,24 @@ public class TestReflection {
 			System.out.println("Part2 Bitti");
 			System.out.println();
 
-			Method yaşSetle = sınıf.getMethod("setVocalAge", Integer.TYPE);
-			yaşSetle.invoke(obj, 25);
+			Method setVocalAge = aClass.getMethod("setVocalAge", Integer.TYPE);
+			setVocalAge.invoke(obj, 25);
 
-			Method yaşıAl = sınıf.getMethod("getVocalAge");
-			Object age = yaşıAl.invoke(obj);
+			Method getVocalAge = aClass.getMethod("getVocalAge");
+			Object age = getVocalAge.invoke(obj);
 			System.out.println("Yaş:" + age);
 
-			Method kişiYazdır = sınıf.getMethod("kişiSayısınıYazdır");
+			Method printIndNumb = aClass.getMethod("kişiSayısınıYazdır");
 			// calling static method with null object
-			kişiYazdır.invoke(null);
+			printIndNumb.invoke(null);
 
 			// getting the all methods include private with declared methods
-			Method yaşArtır = sınıf.getDeclaredMethod("yaşıArtır");
+			Method increaseAge = aClass.getDeclaredMethod("yaşıArtır");
 			// accessing to a private method
-			yaşArtır.setAccessible(true);
-			yaşArtır.invoke(obj);
+			increaseAge.setAccessible(true);
+			increaseAge.invoke(obj);
 
-			Method toString = sınıf.getMethod("toString");
+			Method toString = aClass.getMethod("toString");
 			Object data = toString.invoke(obj);
 			System.out.println("Person:" + data);
 
