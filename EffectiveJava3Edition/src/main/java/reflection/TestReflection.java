@@ -1,7 +1,7 @@
 package reflection;
 
+import java.lang.annotation.Target;
 import java.lang.reflect.*;
-
 public class TestReflection {
 	
 	/*
@@ -13,7 +13,7 @@ public class TestReflection {
 	 */
 	
 	public static void main(String[] args) {
-		
+
 		try
 		{
 			// Joker tipleri wild- unchecked
