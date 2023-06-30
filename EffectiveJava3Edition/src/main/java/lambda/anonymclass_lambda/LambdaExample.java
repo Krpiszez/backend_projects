@@ -27,10 +27,10 @@ public class LambdaExample {
 		// ######1Functional Lambda
 		
 		
-		Yazdır y = () -> {
+		Print y = () -> {
 			return "yazdım";
 			};
-		System.out.println(y.yazdır());
+		System.out.println(y.print());
 		
 		
 		
@@ -38,10 +38,10 @@ public class LambdaExample {
 		
 		String param = "Parametre";
 		// Lambda with parameter
-		YazdırParametre y2 = (paramAlacak) -> {
+		PrintParameter y2 = (paramAlacak) -> {
 			return paramAlacak + " selam";
 		};
-		System.out.println(y2.yazdırParametreyi(param));
+		System.out.println(y2.printTheParameter(param));
 		
 		
 		
@@ -49,8 +49,8 @@ public class LambdaExample {
 		// ######3 Method referansları 43. bölümde detaylı işleyeceğiz burada giriş yaptım.
 		LambdaExample le = new LambdaExample();
 		
-		Yazdır write = le::exampleFour2;
-		System.out.println(write.yazdır());
+		Print write = le::exampleFour2;
+		System.out.println(write.print());
 
 		
 		// @functionalinterface içinde sadece tek metod olması gerektiğinde bahset. implementasyon sıkıntısı cıkmasın diye..
