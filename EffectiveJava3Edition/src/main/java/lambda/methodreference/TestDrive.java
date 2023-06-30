@@ -8,9 +8,9 @@ public class TestDrive {
 
 		// Lambda Kısa Öz
 		
-		FunctionalString fs = Instant.now()::toString;
+		FunctionalString fs = Instant.now()::toString; // bound m.r.
 		
-		System.out.println(fs.yazdır());
+		System.out.println(fs.print());
 		
 		
 
