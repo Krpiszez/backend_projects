@@ -26,7 +26,10 @@ public class LambdaExample {
 		
 		// ######1Functional Lambda
 		
-		
+		Print a = () -> "null";
+		PrintParameter b = (hi) -> hi + "param";
+		System.out.println(a.print());
+		System.out.println(b.printTheParameter("hi "));
 		Print y = () -> {
 			return "yazdım";
 			};
