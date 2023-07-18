@@ -1,5 +1,7 @@
 package cleancode_coffeemaker;
 
+
+
 public interface ICoffeeMaker {
-    Coffee brewCoffee();
+    Coffee brewCoffee(CoffeeMaker.CoffeeBuilder builder);
 }

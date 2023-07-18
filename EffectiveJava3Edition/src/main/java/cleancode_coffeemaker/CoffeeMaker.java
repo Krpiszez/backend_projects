@@ -1,5 +1,6 @@
 package cleancode_coffeemaker;
 
+
 public class CoffeeMaker implements ICoffeeMaker{
 
     private Coffee coffee;
@@ -57,18 +58,22 @@ public class CoffeeMaker implements ICoffeeMaker{
         this.quantity = quantity;
     }
 
+    private CoffeeMaker (CoffeeMaker coffeeMaker){
+
+    }
+
     @Override
-    public Coffee brewCoffee() {
+    public Coffee brewCoffee(CoffeeBuilder builder) {
         return null;
     }
 
     public static class CoffeeBuilder{
-        private Coffee coffee;
-        private String sugar;
-        private String milk;
-        private String chocolate;
-        private int quality;
-        private int quantity;
+        public Coffee coffee;
+        public String sugar;
+        public String milk;
+        public String chocolate;
+        public int quality;
+        public int quantity;
 
         public CoffeeBuilder(int quality, int quantity) {
             this.quality = quality;
