@@ -3,42 +3,33 @@ package cleancode_coffeemaker;
 
 public class CoffeeMaker implements ICoffeeMaker{
 
-    private Coffee coffee;
-    private String sugar;
-    private String milk;
-    private String chocolate;
+    private int sugar;
+    private boolean milk;
+    private boolean chocolate;
     private int quality;
     private int quantity;
 
-    public Coffee getCoffee() {
-        return coffee;
-    }
-
-    public void setCoffee(Coffee coffee) {
-        this.coffee = coffee;
-    }
-
-    public String getSugar() {
+    public int getSugar() {
         return sugar;
     }
 
-    public void setSugar(String sugar) {
+    public void setSugar(int sugar) {
         this.sugar = sugar;
     }
 
-    public String getMilk() {
+    public boolean getMilk() {
         return milk;
     }
 
-    public void setMilk(String milk) {
+    public void setMilk(boolean milk) {
         this.milk = milk;
     }
 
-    public String getChocolate() {
+    public boolean getChocolate() {
         return chocolate;
     }
 
-    public void setChocolate(String chocolate) {
+    public void setChocolate(boolean chocolate) {
         this.chocolate = chocolate;
     }
 
@@ -68,10 +59,9 @@ public class CoffeeMaker implements ICoffeeMaker{
     }
 
     public static class CoffeeBuilder{
-        public Coffee coffee;
-        public String sugar;
-        public String milk;
-        public String chocolate;
+        public int sugar;
+        public boolean milk;
+        public boolean chocolate;
         public int quality;
         public int quantity;
 
@@ -80,11 +70,41 @@ public class CoffeeMaker implements ICoffeeMaker{
             this.quantity = quantity;
         }
 
-        public CoffeeBuilder withMilk(String milk){
-            this.milk = milk;
+        public CoffeeBuilder withMilk(){
+            this.milk = true;
             return this;
         }
+
+        public CoffeeBuilder withChocolate(){
+            this.chocolate = true;
+            return this;
+        }
+
+        public CoffeeBuilder withSugar(int sugar){
+            this.sugar = sugar;
+            return this;
+        }
+
+        public CoffeeMaker build(){
+            return new CoffeeMaker(this);
+        }
+    }
+    public CoffeeMaker (CoffeeBuilder builder){
+        sugar = builder.sugar;
+        chocolate = builder.chocolate;
+        milk = builder.milk;
+        quality = builder.quality;
+        quantity = builder.quantity;
     }
 
-
+    @Override
+    public String toString() {
+        return "CoffeeMaker{" +
+                ", sugar=" + sugar +
+                ", milk=" + milk +
+                ", chocolate=" + chocolate +
+                ", quality=" + quality +
+                ", quantity=" + quantity +
+                '}';
+    }
 }
