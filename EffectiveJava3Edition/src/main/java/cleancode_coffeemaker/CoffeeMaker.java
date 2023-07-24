@@ -3,6 +3,12 @@ package cleancode_coffeemaker;
 
 public class CoffeeMaker implements ICoffeeMaker{
 
+    private final BoilerPlate boilerPlate;
+
+    public CoffeeMaker(BoilerPlate bP){
+        this.boilerPlate = bP;
+    }
+
     private int sugar;
     private boolean milk;
     private boolean chocolate;

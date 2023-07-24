@@ -4,7 +4,5 @@ public class BoilerPlate {
 
     private boolean heater;
 
-    private boolean pot;
-
-
+    private int pot;
 }
