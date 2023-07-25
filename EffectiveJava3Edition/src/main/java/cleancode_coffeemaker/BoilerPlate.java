@@ -6,6 +6,11 @@ public class BoilerPlate {
 
     private int pot;
 
+    public BoilerPlate(boolean heater, int pot) {
+        this.heater = heater;
+        this.pot = pot;
+    }
+
     public boolean isHeater() {
         return heater;
     }
