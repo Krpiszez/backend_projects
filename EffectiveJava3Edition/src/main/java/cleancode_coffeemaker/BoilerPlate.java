@@ -11,6 +11,9 @@ public class BoilerPlate {
         this.pot = pot;
     }
 
+    public BoilerPlate() {
+    }
+
     public boolean isHeater() {
         return heater;
     }
