@@ -5,4 +5,20 @@ public class BoilerPlate {
     private boolean heater;
 
     private int pot;
+
+    public boolean isHeater() {
+        return heater;
+    }
+
+    public void setHeater(boolean heater) {
+        this.heater = heater;
+    }
+
+    public int getPot() {
+        return pot;
+    }
+
+    public void setPot(int pot) {
+        this.pot = pot;
+    }
 }
