@@ -9,6 +9,7 @@ import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.*;
 
 // Frequency table examples showing improper and proper use of stream (Page 210-11)
+// USE METHODS AS THEY WERE INTENDED TO BE USED - Intermediate and Terminal
 public class Freq {
     public static void main(String[] args) throws FileNotFoundException {
         File file = new File("C:\\Users\\Admin\\IdeaProjects\\backend_projects\\EffectiveJava3Edition\\src\\main\\java\\stream\\anagram\\words");
