@@ -11,7 +11,7 @@ import static java.util.stream.Collectors.*;
 // Frequency table examples showing improper and proper use of stream (Page 210-11)
 public class Freq {
     public static void main(String[] args) throws FileNotFoundException {
-        File file = new File("D:\\FS\\Learning\\E book\\effective-java\\src\\main\\java\\com\\effectivejava\\tutorial\\effectivejava\\itema45\\anagrams\\words");
+        File file = new File("C:\\Users\\Admin\\IdeaProjects\\backend_projects\\EffectiveJava3Edition\\src\\main\\java\\stream\\anagram\\words");
 
         // Uses the streams API but not the paradigm--Don't do this!
         Map<String, Long> freq2 = new HashMap<>();
