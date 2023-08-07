@@ -55,8 +55,9 @@ public class CoffeeMaker implements ICoffeeMaker{
         this.quantity = quantity;
     }
 
-    private CoffeeMaker (CoffeeMaker coffeeMaker){
+    private CoffeeMaker (CoffeeMaker coffeeMaker, BoilerPlate boilerPlate){
 
+        this.boilerPlate = boilerPlate;
     }
 
     @Override
@@ -101,6 +102,7 @@ public class CoffeeMaker implements ICoffeeMaker{
         milk = builder.milk;
         quality = builder.quality;
         quantity = builder.quantity;
+        this.boilerPlate = new BoilerPlate();
     }
 
     @Override
