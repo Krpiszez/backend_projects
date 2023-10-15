@@ -13,5 +13,7 @@ public class Runner {
         System.out.println(etli.getSalam());
         System.out.println(etli.getKavurma());
         System.out.println(etli.getPastirma());
+        System.out.println(etli.getPastirma());
+        System.out.println(etli.getBaharat());
     }
 }
