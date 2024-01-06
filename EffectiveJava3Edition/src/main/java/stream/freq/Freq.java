@@ -12,7 +12,7 @@ import static java.util.stream.Collectors.*;
 // USE METHODS AS THEY WERE INTENDED TO BE USED - Intermediate and Terminal
 public class Freq {
     public static void main(String[] args) throws FileNotFoundException {
-        File file = new File("C:\\Users\\Admin\\IdeaProjects\\backend_projects\\EffectiveJava3Edition\\src\\main\\java\\stream\\anagram\\words");
+        File file = new File("C:\\Users\\Omer\\OneDrive\\Desktop\\backend_projects\\backend_projects\\EffectiveJava3Edition\\src\\main\\java\\stream\\anagram\\words");
 
         // Uses the streams API but not the paradigm--Don't do this!
         Map<String, Long> freq2 = new HashMap<>();
