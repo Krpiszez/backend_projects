@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 import static java.math.BigInteger.ONE;
 import static java.math.BigInteger.TWO;
 
-// Generating the first twent Mersenne primes using streams (Page 208)
+// Generating the first twent Mersenne primes using streams
 public class MersennePrimes {
 	
 	/*
